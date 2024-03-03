@@ -50,7 +50,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="loginButton" layoutX="61.0" layoutY="141.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="30.0" prefWidth="69.0" text="登录" textAlignment="JUSTIFY" AnchorPane.leftAnchor="61.0">
+                <Button layoutX="61.0" layoutY="141.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="30.0" prefWidth="69.0" text="登录" textAlignment="JUSTIFY" AnchorPane.leftAnchor="61.0">
                     <font>
                         <Font size="15.0" />
                     </font>
