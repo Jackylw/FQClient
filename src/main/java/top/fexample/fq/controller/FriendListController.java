@@ -64,7 +64,9 @@ public class FriendListController {
                         try {
                             Parent chatView = loader.load();
                             ChatController chatController = loader.getController();
-                            chatController.showChatStage(chatView, user.getAccountId(), "离线");
+                            Thread chatThread = new Thread(chatController);
+                            chatThread.start();
+                            chatController.showChatStage(chatView, userId, user.getAccountId(), "离线");
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

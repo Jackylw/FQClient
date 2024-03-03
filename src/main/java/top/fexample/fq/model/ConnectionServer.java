@@ -5,11 +5,14 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ConnectionServer {
+
+    public static Socket clientSocket;
+
     // 登录验证
     public Msg sendLoginInfoToServer(User user) {
         Msg msg = new Msg();
         try {
-            Socket clientSocket;
+//            Socket clientSocket;
             try {
                 clientSocket = new Socket("127.0.0.1", 9000);
             } catch (Exception e){
@@ -20,7 +23,8 @@ public class ConnectionServer {
 
             ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
             oos.writeObject(user);
-            System.out.println("发送账号为" + user.getAccountId() + "密码为" + user.getPassword());
+            System.out.println("发送账号为" + user.getAccountId());
+            System.out.println("发送密码为" + user.getPassword());
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
             msg = (Msg) ois.readObject();
             System.out.println("接受信息为" + msg.getMsgType());

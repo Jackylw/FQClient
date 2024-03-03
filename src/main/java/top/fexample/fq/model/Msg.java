@@ -4,8 +4,14 @@
 package top.fexample.fq.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Msg implements Serializable {
+    private String senderId;
+    private String receiverId;
+    private String msgContent;
+    private String sendTime;
     public static final String LOGIN_SUCCESS = "login_success";
     public static final String LOGIN_ERROR = "login_error";
     public static final String REGISTER_SUCCESS = "register_success";
@@ -19,8 +25,47 @@ public class Msg implements Serializable {
         return msgType;
     }
 
+    public void setMsgType(String msgType) {
+        this.msgType = msgType;
+    }
+
     public void setMsgType(MsgType msgType) {
         this.msgType = msgType.getMsgType();
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public String getMsgContent() {
+        return msgContent;
+    }
+
+    public void setMsgContent(String msgContent) {
+        this.msgContent = msgContent;
+    }
+
+    public String getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime() {
+        // 获取当前时间
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+        this.sendTime = now.format(formatter);
     }
 }
 
