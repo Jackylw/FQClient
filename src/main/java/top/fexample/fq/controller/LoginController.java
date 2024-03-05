@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import top.fexample.fq.model.ConServerThread;
 import top.fexample.fq.model.Msg;
 import top.fexample.fq.model.User;
 import top.fexample.fq.model.ConnectionServer;

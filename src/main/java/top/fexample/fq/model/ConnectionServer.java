@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class ConnectionServer {
 
-    public static Socket clientSocket;
+    private Socket clientSocket;
 
     // 登录验证
     public Msg sendLoginInfoToServer(User user) {
@@ -28,7 +28,13 @@ public class ConnectionServer {
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
             msg = (Msg) ois.readObject();
             System.out.println("接受信息为" + msg.getMsgType());
-            // 如果msgType为login_success，则返回true，否则返回false
+
+            // 如果msgType为login_success，创建一个ConServerThread
+            if(msg.getMsgType().equals(Msg.LOGIN_SUCCESS)){
+                ConServerThread conServerThread = new ConServerThread(clientSocket);
+                conServerThread.start();
+                ManageServerThread.addServer(user.getAccountId(), conServerThread);
+            }
             return msg;
         } catch (Exception e) {
             throw new RuntimeException(e);

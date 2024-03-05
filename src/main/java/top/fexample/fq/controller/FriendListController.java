@@ -64,9 +64,7 @@ public class FriendListController {
                         try {
                             Parent chatView = loader.load();
                             ChatController chatController = loader.getController();
-                            Thread chatThread = new Thread(chatController);
-                            chatThread.start();
-                            chatController.showChatStage(chatView, userId, user.getAccountId(), "离线");
+                            chatController.showChatStage(userId, user.getAccountId(), "离线", chatView);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -84,7 +82,7 @@ public class FriendListController {
 
     //todo 根据userId获取该用户的好友列表
     private List<User> getUserList(String userId) {
-        if (userId.equals("1000")) {
+        if (userId.equals("10001")) {
             return Arrays.asList(
                     new User("10001", "123"),
                     new User("10002", "123"),
@@ -102,10 +100,18 @@ public class FriendListController {
                     new User("10014", "123"),
                     new User("10015", "123")
             );
+        } else if (userId.equals("10002")) {
+            return Arrays.asList(
+                    new User("10001", "123"),
+                    new User("10002", "123"),
+                    new User("10003", "123")
+            );
         } else {
             return Arrays.asList(
                     new User("10001", "123"),
-                    new User("10002", "123")
+                    new User("10002", "123"),
+                    new User("10003", "123"),
+                    new User("10004", "123")
             );
         }
     }
