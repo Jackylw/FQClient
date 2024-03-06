@@ -7,14 +7,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="40.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/21" fx:controller="top.fexample.fq.controller.UserController" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox spacing="5.0" prefHeight="40.0" prefWidth="285.0" styleClass="hbox-background">
-        <ImageView fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../images/mm.jpg" />
+<AnchorPane prefHeight = "40.0" prefWidth = "285.0" xmlns = "http://javafx.com/javafx/21"
+            fx:controller = "top.fexample.fq.controller.UserController" xmlns:fx = "http://javafx.com/fxml/1"
+            stylesheets = "@../css/UserComponent.css">
+    <HBox spacing = "5.0" prefHeight = "40.0" prefWidth = "285.0" styleClass = "hbox-background">
+        <ImageView fx:id="imageHead" fitWidth = "40.0" pickOnBounds = "true" preserveRatio = "true">
+            <Image url = "@../images/mm.jpg" />
         </ImageView>
-        <VBox spacing="5">
-            <Label fx:id="accountIdLabel" />
-            <Label fx:id="statusLabel" />
+        <VBox spacing = "5">
+            <Label fx:id = "accountIdLabel" />
+            <Label fx:id = "statusLabel" />
         </VBox>
     </HBox>
 </AnchorPane>

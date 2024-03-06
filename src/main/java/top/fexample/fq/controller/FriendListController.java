@@ -6,20 +6,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import top.fexample.fq.Application;
+import top.fexample.fq.model.Msg;
 import top.fexample.fq.model.User;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+
+import java.util.*;
 
 public class FriendListController {
 
     @FXML
     private VBox friendListContainer;
+
+    public String[] userStatusMsg;
+
+    // 存储每个好友节点，便于后续操作此节点
+    public static final HashMap<String, Node> friendListNodes = new HashMap<>();
 
     // 创建并显示好友列表
     public void showFriendListStage(String userId) {
@@ -47,15 +54,19 @@ public class FriendListController {
 
     // 初始化好友列表
     public void initFriendList(String userId) {
+        // 获取好友列表
         List<User> friends = getUserList(userId);
+
         for (User user : friends) {
             FXMLLoader userComponentLoader = new FXMLLoader(Application.class.getResource("views/UserComponent.fxml"));
             try {
                 // 加载UserComponent.fxml并获取其根节点
                 Node userNode = userComponentLoader.load();
 
+                friendListNodes.put(user.getAccountId(), userNode);
+
                 UserController userController = userComponentLoader.getController();
-                userController.setUserController(user.getAccountId(), "离线");
+                userController.setUserController(user.getAccountId(), user.getStatus());
                 userNode.setOnMouseClicked(event -> {
                     if (event.getClickCount() == 2 && event.getButton().equals(MouseButton.PRIMARY)) {
 
@@ -64,7 +75,7 @@ public class FriendListController {
                         try {
                             Parent chatView = loader.load();
                             ChatController chatController = loader.getController();
-                            chatController.showChatStage(userId, user.getAccountId(), "离线", chatView);
+                            chatController.showChatStage(userId, user.getAccountId(), user.getStatus(), chatView);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -78,41 +89,37 @@ public class FriendListController {
                 throw new RuntimeException(e);
             }
         }
+
+
     }
 
-    //todo 根据userId获取该用户的好友列表
+    // 设置
+    public void setUserStatusMsg(String[] userStatusMsg) {
+        this.userStatusMsg = userStatusMsg;
+    }
+
+    //todo 根据userId获取该用户的好友列表,userId为根据此获取该id的好友列表
     private List<User> getUserList(String userId) {
-        if (userId.equals("10001")) {
-            return Arrays.asList(
-                    new User("10001", "123"),
-                    new User("10002", "123"),
-                    new User("10003", "123"),
-                    new User("10004", "123"),
-                    new User("10005", "123"),
-                    new User("10006", "123"),
-                    new User("10007", "123"),
-                    new User("10008", "123"),
-                    new User("10009", "123"),
-                    new User("10010", "123"),
-                    new User("10011", "123"),
-                    new User("10012", "123"),
-                    new User("10013", "123"),
-                    new User("10014", "123"),
-                    new User("10015", "123")
-            );
-        } else if (userId.equals("10002")) {
-            return Arrays.asList(
-                    new User("10001", "123"),
-                    new User("10002", "123"),
-                    new User("10003", "123")
-            );
-        } else {
-            return Arrays.asList(
-                    new User("10001", "123"),
-                    new User("10002", "123"),
-                    new User("10003", "123"),
-                    new User("10004", "123")
-            );
+        System.out.println("获取好友列表");
+        return new ArrayList<>(Arrays.asList(new User[]{
+                new User("10001", "123", "offline"),
+                new User("10002", "456", "offline"),
+                new User("10003", "789", "offline")
+        }));
+    }
+
+    // 更新好友列表,但是此处并未更新User类的status，User类统一默认为offline
+    public void updateFriendList() {
+        for (String onlineUserId : userStatusMsg) {
+            if (friendListNodes.containsKey(onlineUserId)) {
+                Node node = friendListNodes.get(onlineUserId);
+                Label statusLabel = (Label) node.lookup("#statusLabel");
+                ImageView imageView = (ImageView) node.lookup("#imageHead");
+                Platform.runLater(() -> {
+                    statusLabel.setText("online");
+                    imageView.setStyle("");
+                });
+            }
         }
     }
 }

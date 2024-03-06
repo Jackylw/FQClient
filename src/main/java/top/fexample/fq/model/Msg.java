@@ -18,6 +18,9 @@ public class Msg implements Serializable {
     public static final String REGISTER_ERROR = "register_error";
     public static final String CONNECTION_SERVER_ERROR = "connection_server_error";
     public static final String CONNECTION_SERVER_SUCCESS = "connection_server_success";
+    public static final String GET_USER_ONLINE = "get_user_online";
+    public static final String REC_USER_ONLINE = "rec_user_online";
+    public static final String TEXT_MSG = "text_msg";
 
     private String msgType;
 
@@ -61,6 +64,8 @@ public class Msg implements Serializable {
         return sendTime;
     }
 
+
+
     public void setSendTime() {
         // 获取当前时间
         LocalDateTime now = LocalDateTime.now();
@@ -75,7 +80,10 @@ enum MsgType {
     REGISTER_SUCCESS("register_success"),
     REGISTER_ERROR("register_error"),
     CONNECTION_SERVER_ERROR("connection_server_error"),
-    CONNECTION_SERVER_SUCCESS("connection_server_success");
+    CONNECTION_SERVER_SUCCESS("connection_server_success"),
+    GET_USER_ONLINE("get_user_online"),
+    REC_USER_ONLINE("rec_user_online"),
+    TEXT_MSG("text_msg");
 
     private final String msgType;
 

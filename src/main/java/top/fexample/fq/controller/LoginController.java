@@ -4,10 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import top.fexample.fq.model.ConServerThread;
-import top.fexample.fq.model.Msg;
-import top.fexample.fq.model.User;
-import top.fexample.fq.model.ConnectionServer;
+import top.fexample.fq.model.*;
+
+import java.io.ObjectOutputStream;
 
 public class LoginController {
 
@@ -46,6 +45,14 @@ public class LoginController {
                         // 调用FriendListController的showFriendListStage方法，显示好友列表窗口
                         FriendListController friendListController = new FriendListController();
                         friendListController.showFriendListStage(userId);
+                        ManageFriendList.addFriendListController(userId, friendListController);
+
+                        // 向发送一个返回在线好友的请求包get
+                        ObjectOutputStream oos = new ObjectOutputStream(ManageServerThread.getServer(userId).getClientSocket().getOutputStream());
+                        Msg msg = new Msg();
+                        msg.setSenderId(userId);
+                        msg.setMsgType(Msg.GET_USER_ONLINE);
+                        oos.writeObject(msg);
                         break;
                     case Msg.LOGIN_ERROR:
                         setAlert(alert, "登录提示", "登录失败", "账号或密码错误");
@@ -68,7 +75,7 @@ public class LoginController {
 
     // 校验账号密码
     public Msg checkLogin(String accountId, String password) {
-        User user = new User(accountId, password);
+        User user = new User(accountId, password, "offline");
         ConnectionServer connectionServer = new ConnectionServer();
         return connectionServer.sendLoginInfoToServer(user);
     }

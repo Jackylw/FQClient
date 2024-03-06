@@ -8,10 +8,12 @@ import java.io.Serializable;
 public class User implements Serializable {
     public String accountId;
     public String password;
+    public String status;
 
-    public User(String accountId, String password) {
+    public User(String accountId, String password, String status) {
         this.accountId = accountId;
         this.password = password;
+        this.status = status;
     }
 
     public String getAccountId() {
@@ -30,4 +32,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -12,7 +12,6 @@ public class ConnectionServer {
     public Msg sendLoginInfoToServer(User user) {
         Msg msg = new Msg();
         try {
-//            Socket clientSocket;
             try {
                 clientSocket = new Socket("127.0.0.1", 9000);
             } catch (Exception e){
@@ -27,7 +26,7 @@ public class ConnectionServer {
             System.out.println("发送密码为" + user.getPassword());
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
             msg = (Msg) ois.readObject();
-            System.out.println("接受信息为" + msg.getMsgType());
+            System.out.println("服务器校验信息为" + msg.getMsgType());
 
             // 如果msgType为login_success，创建一个ConServerThread
             if(msg.getMsgType().equals(Msg.LOGIN_SUCCESS)){
