@@ -76,18 +76,17 @@ public class ChatController {
             });
 
             // 回车模拟点击事件
-            sendInformation.setOnKeyPressed(event -> {
-                KeyCode keyCode = event.getCode();
-                if (keyCode == KeyCode.ENTER) {
-                    if ("\n".equals(sendInformation.getText())) {
-                        sendInformation.clear();
-                        sendInformation.setStyle("-fx-border-color: red");
-                    } else {
-                        sendInformation.setStyle("-fx-border-color: gray");
-                        onSendButtonClick(senderId, receiverId);
-                    }
-                }
-            });
+//            sendInformation.setOnKeyPressed(event -> {
+//                KeyCode keyCode = event.getCode();
+//                if (keyCode == KeyCode.ENTER) {
+//                    if ((sendInformation.getText()).isEmpty()) {
+//                        sendInformation.setStyle("-fx-border-color: red");
+//                    } else {
+//                        sendInformation.setStyle("-fx-border-color: gray");
+//                        onSendButtonClick(senderId, receiverId);
+//                    }
+//                }
+//            });
         }
     }
 

@@ -20,7 +20,7 @@
          </font>
         </TextArea>
     </AnchorPane>
-    <Button fx:id="sendInformationButton" layoutX="524.0" layoutY="328.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="79.0" text="发送/Enter" textAlignment="CENTER" wrapText="true" />
+    <Button fx:id="sendInformationButton" layoutX="524.0" layoutY="328.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="79.0" text="发送" textAlignment="CENTER" wrapText="true" />
     <TextField fx:id="chatUserId" disable="true" layoutX="524.0" layoutY="29.0" prefHeight="23.0" prefWidth="140.0" />
     <TextField fx:id="chatUserStatus" disable="true" layoutX="524.0" layoutY="73.0" prefHeight="23.0" prefWidth="140.0" />
     <Label layoutX="474.0" layoutY="29.0" prefHeight="23.0" prefWidth="38.0" text="账号：" />

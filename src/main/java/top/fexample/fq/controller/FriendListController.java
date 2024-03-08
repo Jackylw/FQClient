@@ -13,7 +13,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import top.fexample.fq.Application;
-import top.fexample.fq.model.Msg;
 import top.fexample.fq.model.User;
 
 import java.util.*;
@@ -75,7 +74,8 @@ public class FriendListController {
                         try {
                             Parent chatView = loader.load();
                             ChatController chatController = loader.getController();
-                            chatController.showChatStage(userId, user.getAccountId(), user.getStatus(), chatView);
+                            Label statusLabel = (Label) userNode.lookup("#statusLabel");
+                            chatController.showChatStage(userId, user.getAccountId(), statusLabel.getText(), chatView);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

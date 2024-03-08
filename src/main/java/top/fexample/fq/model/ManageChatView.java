@@ -34,4 +34,8 @@ public class ManageChatView {
         return chatControllers.get(receiverId);
     }
 
+    public static Stage getChatStage(String receiverId) {
+        return openChatStages.get(receiverId);
+    }
+
 }
