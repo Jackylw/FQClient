@@ -2,7 +2,7 @@
 
 此项目Bug较多，现打算重写，新项目地址如下
 
-https://gitee.com/Jackylw/qserver
+https://gitee.com/Jackylw/qclient
 
 功能：
 
