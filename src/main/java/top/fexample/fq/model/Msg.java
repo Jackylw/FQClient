@@ -12,15 +12,21 @@ public class Msg implements Serializable {
     private String receiverId;
     private String msgContent;
     private String sendTime;
+    public static final String LOGIN = "login";
     public static final String LOGIN_SUCCESS = "login_success";
     public static final String LOGIN_ERROR = "login_error";
+    public static final String REGISTER = "register";
     public static final String REGISTER_SUCCESS = "register_success";
     public static final String REGISTER_ERROR = "register_error";
     public static final String CONNECTION_SERVER_ERROR = "connection_server_error";
     public static final String CONNECTION_SERVER_SUCCESS = "connection_server_success";
+    public static final String GET_USER_LIST = "get_user_list";
     public static final String GET_USER_ONLINE = "get_user_online";
     public static final String REC_USER_ONLINE = "rec_user_online";
     public static final String TEXT_MSG = "text_msg";
+    public static final String FIND_PASSWORD = "find_password";
+    public static final String FIND_PASSWORD_SUCCESS = "find_password_success";
+    public static final String FIND_PASSWORD_ERROR = "find_password_error";
 
     private String msgType;
 
@@ -65,7 +71,6 @@ public class Msg implements Serializable {
     }
 
 
-
     public void setSendTime() {
         // 获取当前时间
         LocalDateTime now = LocalDateTime.now();
@@ -75,15 +80,21 @@ public class Msg implements Serializable {
 }
 
 enum MsgType {
+    LOGIN("login"),
     LOGIN_SUCCESS("login_success"),
     LOGIN_ERROR("login_error"),
+    REGISTER("register"),
     REGISTER_SUCCESS("register_success"),
     REGISTER_ERROR("register_error"),
     CONNECTION_SERVER_ERROR("connection_server_error"),
     CONNECTION_SERVER_SUCCESS("connection_server_success"),
+    GET_USER_LIST("get_user_list"),
     GET_USER_ONLINE("get_user_online"),
     REC_USER_ONLINE("rec_user_online"),
-    TEXT_MSG("text_msg");
+    TEXT_MSG("text_msg"),
+    FIND_PASSWORD("find_password"),
+    FIND_PASSWORD_SUCCESS("find_password_success"),
+    FIND_PASSWORD_ERROR("find_password_error");
 
     private final String msgType;
 

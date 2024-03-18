@@ -13,8 +13,12 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import top.fexample.fq.Application;
+import top.fexample.fq.model.ConServerThread;
+import top.fexample.fq.model.ManageServerThread;
 import top.fexample.fq.model.User;
 
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.*;
 
 public class FriendListController {
@@ -102,9 +106,9 @@ public class FriendListController {
     private List<User> getUserList(String userId) {
         System.out.println("获取好友列表");
         return new ArrayList<>(Arrays.asList(new User[]{
-                new User("10001", "123", "offline"),
-                new User("10002", "456", "offline"),
-                new User("10003", "789", "offline")
+                new User("10001", "null", "offline"),
+                new User("10002", "null", "offline"),
+                new User("10003", "null", "offline")
         }));
     }
 
